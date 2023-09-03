@@ -2,7 +2,8 @@
 
 功能： 对一条直播排期 一键自动分配直播任务
 
-技术支持： https://digitalforces.iuxlabs.com/flight.html
+ - 效果： https://mousebomb.github.io/iux_heijian_zhibo_sop/
+ - 技术支持： https://digitalforces.iuxlabs.com/flight.html
 
 # Getting Started
 - Hit run
