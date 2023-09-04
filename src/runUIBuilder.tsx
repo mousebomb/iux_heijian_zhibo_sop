@@ -57,11 +57,6 @@ export default async function main(uiBuilder: UIBuilder) {
     {
         return uiBuilder.markdown(`检测不到\`${Config.FIELD_SOP_FuZeRen}\`字段`);
     }
-    const sopCanKaoWenDangLianJieField = sopFieldMetaList.find((li) => li.name == Config.FIELD_SOP_CanKaoWenDangLianJie);
-    if ( !sopCanKaoWenDangLianJieField )
-    {
-        return uiBuilder.markdown(`检测不到\`${Config.FIELD_SOP_CanKaoWenDangLianJie}\`字段`);
-    }
     // 验证字段.任务清单表
     const rwqdFieldMetaList = await rwqdTable.getFieldMetaList();
     const rwqdRenWuXiangQingField = rwqdFieldMetaList.find((li) => li.name == Config.FIELD_RWQD_RenWuXiangQing);
@@ -73,11 +68,6 @@ export default async function main(uiBuilder: UIBuilder) {
     if ( !rwqdFuZeRenField )
     {
         return uiBuilder.markdown(`检测不到\`${Config.FIELD_RWQD_FuZeRen}\`字段`);
-    }
-    const rwqdCanKaoWenDangLianJieField = rwqdFieldMetaList.find((li) => li.name == Config.FIELD_RWQD_CanKaoWenDangLianJie);
-    if ( !rwqdCanKaoWenDangLianJieField )
-    {
-        return uiBuilder.markdown(`检测不到\`${Config.FIELD_RWQD_CanKaoWenDangLianJie}\`字段`);
     }
     const rwqdPaiQiGaiShuField = rwqdFieldMetaList.find((li) => li.name == Config.FIELD_RWQD_PaiQiGaiShu);
     if ( !rwqdPaiQiGaiShuField )
@@ -166,8 +156,6 @@ export default async function main(uiBuilder: UIBuilder) {
                     const cellValueRenWuXiangQing = curSopRecord.fields[sopRenWuXiangQingField.id];
                     // 负责人:用户= SOP.负责人引用转换为值，引用不在record中，需要单独获取
                     const cellValueFuZeRen = await sopTable.getCellValue(sopFuZeRenField.id, sopRecordId);
-                    // 参考文档链接：链接= SOP.参考文档链接
-                    const cellValueCanKaoWenDangLianJie = curSopRecord.fields[sopCanKaoWenDangLianJieField.id];
                         //
                     uiBuilder.showLoading('插入'+done+"/"+sopRecords.length+'，请不要重复点击，以免造成数据错误...');
                     console.log("default/flushData",cellValueFuZeRen);
@@ -176,7 +164,6 @@ export default async function main(uiBuilder: UIBuilder) {
                         fields: {
                             [rwqdRenWuXiangQingField.id]: cellValueRenWuXiangQing,
                             [rwqdFuZeRenField.id]: cellValueFuZeRen,
-                            [rwqdCanKaoWenDangLianJieField.id]: cellValueCanKaoWenDangLianJie,
                             [rwqdPaiQiGaiShuField.id]: cellValuePaiQiGaiShu,
                         }
                     });
